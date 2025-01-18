@@ -43,6 +43,34 @@ public class Currency {
         return this.name;
     }
 
+    /**
+     * Compare whether a Currency instance is equal to this instance,
+     * if they have the same code value, they are equal.
+     * @param that an instance to be compared
+     * @return true if they are equal.
+     */
+    @Override
+    public boolean equals(final Object that) {
+        if (this == that) {
+            return true;
+        }
+
+        if (!(that instanceof Currency o)) {
+            return false;
+        }
+
+        return this.code.equals(o.code);
+    }
+
+    /**
+     * Return a hashcode of an instance, the same code value return the same hashcode.
+     * @return a hashcode.
+     */
+    @Override
+    public int hashCode() {
+        return this.code.hashCode();
+    }
+
     private static void validateCode(String code) {
         if (Objects.isNull(code)) {
             throw new CurrencyException("Code is null");

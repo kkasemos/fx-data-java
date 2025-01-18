@@ -102,4 +102,50 @@ class CurrencyTest {
 
         assertEquals("United States Dollar", currency.getName());
     }
+
+    @Test
+    void testEqualsSameInstance() {
+        final Currency currency1 = Currency.valueOf("USD", "United States Dollar");
+
+        assertEquals(currency1, currency1);
+    }
+
+    @Test
+    void testEqualsSameCode() {
+        final Currency currency1 = Currency.valueOf("USD", "United States Dollar");
+        final Currency currency2 = Currency.valueOf("USD", "US Dollar");
+
+        assertEquals(currency1, currency2);
+    }
+
+    @Test
+    void testEqualsDiffCode() {
+        final Currency currency1 = Currency.valueOf("USD", "United States Dollar");
+        final Currency currency2 = Currency.valueOf("EUR", "Euro");
+
+        assertNotEquals(currency1, currency2);
+    }
+
+    @Test
+    void testHashCodeSameInstance() {
+        final Currency currency1 = Currency.valueOf("USD", "United States Dollar");
+
+        assertEquals(currency1.hashCode(), currency1.hashCode());
+    }
+
+    @Test
+    void testHashCodeSameCode() {
+        final Currency currency1 = Currency.valueOf("USD", "United States Dollar");
+        final Currency currency2 = Currency.valueOf("USD", "US Dollar");
+
+        assertEquals(currency1.hashCode(), currency2.hashCode());
+    }
+
+    @Test
+    void testHashCodeDiffCode() {
+        final Currency currency1 = Currency.valueOf("USD", "United States Dollar");
+        final Currency currency2 = Currency.valueOf("EUR", "Euro");
+
+        assertNotEquals(currency1.hashCode(), currency2.hashCode());
+    }
 }
